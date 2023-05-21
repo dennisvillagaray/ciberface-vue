@@ -1,7 +1,7 @@
 <template>
   <div class="container relative flex flex-col min-h-screen mx-auto">
     <header
-      class="fixed top-0 left-0 items-center justify-center w-full h-16 p-4 bg-gray-800"
+      class="fixed top-0 left-0 z-50 items-center justify-center w-full h-16 p-4 bg-gray-800"
     >
       <nav class="container flex items-center justify-between mx-auto">
         <a href="#" class="text-xl font-bold text-white">Ciberface</a>
@@ -15,7 +15,7 @@
         </div>
       </nav>
     </header>
-    <main class="flex items-center justify-center flex-1 py-4">
+    <main class="flex items-center justify-center flex-1 py-4 mt-16">
       <router-view></router-view>
     </main>
     <footer class="flex items-center justify-center h-16 bg-gray-800">
