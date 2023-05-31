@@ -31,6 +31,12 @@ import IconPost from "vue-material-design-icons/Post.vue";
 export default {
   name: "PostNewPost",
   components: { IconPost },
+  props: {
+    currentUser: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       newPostContent: "",
@@ -46,27 +52,22 @@ export default {
       if (this.newPostContent === "") {
         return;
       }
-
-      // Agregar el post para consumir servicio
       const newPost = {
-        id: 2,
-        content: this.newPostContent,
-        timestamp: new Date().toLocaleString(),
         author: {
-          name: "Dennis",
-          avatar: "https://i.pravatar.cc/100?img=4"
+          name: this.currentUser.name,
+          avatar: this.currentUser.avatar
         },
+        timestamp: new Date().toLocaleString(),
+        content: this.newPostContent,
         image: null,
-        currentUser: {
-          name: "Dennis",
-          avatar: "https://i.pravatar.cc/100?img=4"
-        },
         comments: [],
+        currentUser: {
+          name: this.currentUser.name,
+          avatar: this.currentUser.avatar
+        },
         newComment: ""
       };
       this.$emit("new-post", newPost);
-
-      console.log("Nuevo post:", newPost);
 
       this.newPostContent = "";
       this.$refs.postContent.innerText = "";

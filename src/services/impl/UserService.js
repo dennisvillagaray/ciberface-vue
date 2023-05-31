@@ -3,7 +3,7 @@ import ApiService from "@/services/api";
 class UserService extends ApiService {
   constructor() {
     super();
-    this.endPoint = "user/";
+    this.endPoint = "user";
   }
 
   getUsers = async () => {
@@ -17,7 +17,7 @@ class UserService extends ApiService {
   createUser = async (message) => {
     const response = await this.http({
       endPoint: this.endPoint,
-      body: { message }
+      body: message
     });
     return response;
   };

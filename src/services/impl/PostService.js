@@ -3,7 +3,7 @@ import ApiService from "@/services/api";
 class PostService extends ApiService {
   constructor() {
     super();
-    this.endPoint = "post/";
+    this.endPoint = "post";
   }
 
   getPosts = async () => {
@@ -14,10 +14,11 @@ class PostService extends ApiService {
     return response;
   };
 
-  createPost = async (message) => {
+  createPost = async (payload) => {
     const response = await this.http({
       endPoint: this.endPoint,
-      body: { message }
+      method: "POST",
+      body: payload
     });
     return response;
   };
@@ -46,5 +47,23 @@ class PostService extends ApiService {
     });
     return response;
   };
+
+  // * temporal
+  getCommentListByPostId = async (id) => {
+    const response = await this.http({
+      endPoint: `${this.endPoint}/${id}/comments`,
+      method: "GET"
+    });
+    return response;
+  }
+
+  createCommentByPostId = async (id, payload) => {
+    const response = await this.http({
+      endPoint: `${this.endPoint}/${id}/comments`,
+      method: "POST",
+      body: payload
+    });
+    return response;
+  }
 }
 export default PostService;
