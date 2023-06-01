@@ -70,6 +70,7 @@ export default {
       this.$emit("new-post", newPost);
 
       this.newPostContent = "";
+      this.showPlaceholder = this.newPostContent === "";
       this.$refs.postContent.innerText = "";
     }
   },

@@ -52,6 +52,7 @@ export default {
     clearInput() {
       this.$refs.commentInput.innerText = "";
       this.newComment = "";
+      this.showPlaceholder = this.newComment === "";
     },
     addComment() {
       if (this.newComment !== "") {
