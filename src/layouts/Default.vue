@@ -1,17 +1,11 @@
 <template>
   <div class="container relative flex flex-col min-h-screen mx-auto">
-    <header
-      class="fixed top-0 left-0 z-50 items-center justify-center w-full h-16 p-4 bg-gray-800"
-    >
+    <header class="fixed top-0 left-0 z-50 items-center justify-center w-full h-16 p-4 bg-gray-800">
       <nav class="container flex items-center justify-between mx-auto">
-        <a href="#" class="text-xl font-bold text-white">Ciberface</a>
+        <a href="#" @click="goInitial" class="text-xl font-bold text-white">Ciberface</a>
         <div>
           <a href="#" class="text-white">link a una página</a>
-          <a
-            href="#"
-            class="px-4 py-2 ml-4 font-bold text-gray-800 bg-white rounded"
-            >link a otra página</a
-          >
+          <a href="#" class="px-4 py-2 ml-4 font-bold text-gray-800 bg-white rounded">link a otra página</a>
         </div>
       </nav>
     </header>
@@ -27,7 +21,22 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+
+import Login from "@/views/auth/Login.vue";
+
 export default {
-  name: "Layout"
+  name: "Layout",
+  components: {
+    Login,
+  },
+  setup() {
+    return { router: useRouter() }
+  },
+  methods: {
+    goInitial() {
+      this.$router.push({ name: "Home" });
+    },
+  }
 };
 </script>

@@ -4,8 +4,6 @@ import DefaultLayout from "@/layouts/Default.vue";
 import Login from "@/views/auth/Login.vue";
 import Register from "@/views/auth/Register.vue";
 
-const a = true;
-
 const routes = [
   {
     path: "/",
@@ -14,7 +12,14 @@ const routes = [
       {
         path: "",
         name: "Home",
-        component: a ? Home : Login
+        component: Home,
+        meta: { requiresAuth: true },
+
+      },
+      {
+        path: "",
+        name: "Login",
+        component: Login,
       },
       {
         path: "/register",
@@ -24,9 +29,31 @@ const routes = [
   }
 ];
 
+
 const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const user = localStorage.getItem("user");
+
+  if (requiresAuth && !user) {
+    if (to.name === "Login") {
+      next();
+    } else {
+      router.push({ name: "Login" });
+    }
+  } else if (requiresAuth && user) {
+    if (to.name === "Home") {
+      next();
+    } else {
+      router.push({ name: "Home" });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
