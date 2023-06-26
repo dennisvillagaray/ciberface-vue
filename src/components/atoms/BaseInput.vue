@@ -11,8 +11,9 @@
       @blur="blur"
     />
     <label
+      v-if="label"
       :for="id"
-      class="absolute left-0 px-2 text-gray-400 transition duration-200 pointer-events-none top-3 ease-in-outbg-white text-grey-darker"
+      class="absolute left-0 px-2 text-gray-400 transition duration-200 pointer-events-none top-1.5 ease-in-outbg-white text-grey-darker"
       >{{ label }}</label
     >
   </div>
@@ -28,7 +29,7 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      required: false
     },
     type: {
       type: String,

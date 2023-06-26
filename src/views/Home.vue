@@ -8,22 +8,32 @@
     <div class="mr-16"></div>
     <div>
       <PostNewPost @new-post="addNewPost" :current-user="currentUser" />
-      <Post v-for="(post, index) in posts" :key="index" :author="post.author" :post="post" />
+      <Post
+        v-for="(post, index) in posts"
+        :key="index"
+        :author="post.author"
+        :post="post"
+      />
     </div>
-    <div class="mr-16"></div>
+    <div class="mr-16 w-80">
+      <ContactChatList />
+    </div>
   </template>
 </template>
 
 <script>
 import Post from "@/components/molecules/Post.vue";
-import PostNewPost from "@/components/atoms/PostNewPost.vue";
+import PostNewPost from "@/components/atoms/Post/PostNewPost.vue";
 import Skeleton from "@/components/atoms/Skeleton.vue";
+import ContactChatList from "@/components/molecules/ContactChatList.vue";
+import { mapActions } from "vuex";
+
 import postApi from "@/services/impl/PostService.js";
 import userApi from "@/services/impl/UserService.js";
 
 export default {
   name: "Home",
-  components: { Post, PostNewPost, Skeleton },
+  components: { Post, PostNewPost, Skeleton, ContactChatList },
   data() {
     return {
       posts: [],
@@ -36,6 +46,7 @@ export default {
     this.getCurrentUser();
   },
   methods: {
+    ...mapActions('user', ['setUser']),
     async getListPost() {
       await this.postService
         .getPosts()
@@ -65,6 +76,7 @@ export default {
         .findOneUser(114)
         .then((response) => {
           this.currentUser = response.data;
+          this.setUser(response.data)
           setTimeout(() => {
             this.isLoading = false;
           }, 1000)

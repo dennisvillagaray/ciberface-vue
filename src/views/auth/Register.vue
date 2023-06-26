@@ -2,9 +2,9 @@
   <section class="flex w-full place-content-center">
     <div class="flex flex-col items-center justify-center text-center mr-28">
       <Logo width="129" height="129" />
-      <h3 class="font-sans text-5xl font-bold">CIBERFACE</h3>
+      <h3 class="font-sans text-5xl font-bold">fakerface</h3>
       <span class="mt-4 font-sans text-xs"
-        >Somos la red social oficial de Chistotec 😎</span
+        >Somos la red social oficial de Cibertec 😎</span
       >
     </div>
     <div

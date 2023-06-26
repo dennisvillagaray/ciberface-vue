@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
+import Chat from "@/views/_chat.vue";
 import DefaultLayout from "@/layouts/Default.vue";
 import Login from "@/views/auth/Login.vue";
 import Register from "@/views/auth/Register.vue";
@@ -14,17 +15,25 @@ const routes = [
         name: "Home",
         component: Home,
         meta: { requiresAuth: true },
-
       },
       {
         path: "",
         name: "Login",
         component: Login,
+        meta: { hiddenChatModal: true },
       },
       {
         path: "/register",
-        component: Register
-      }
+        component: Register,
+        meta: { hiddenChatModal: true },
+
+      },
+      {
+        path: '/chat/:slug',
+        name: 'Chat',
+        component: Chat,
+        meta: { hiddenChatModal: true, requiresAuth: true },
+      },
     ]
   }
 ];
@@ -44,12 +53,6 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       router.push({ name: "Login" });
-    }
-  } else if (requiresAuth && user) {
-    if (to.name === "Home") {
-      next();
-    } else {
-      router.push({ name: "Home" });
     }
   } else {
     next();

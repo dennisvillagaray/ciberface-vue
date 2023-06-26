@@ -46,5 +46,15 @@ class UserService extends ApiService {
     });
     return response;
   };
+
+    // * temporal
+
+  getContactsByUserId = async (userId) => {
+    const response = await this.http({
+      endPoint: `${this.endPoint}/${userId}/contacts`,
+      method: "GET"
+    });
+    return response;
+  };
 }
 export default UserService;

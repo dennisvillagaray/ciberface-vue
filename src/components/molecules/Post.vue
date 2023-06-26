@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import PostContent from "@/components/atoms/PostContent.vue";
-import PostListComment from "@/components/atoms/PostListComment.vue";
-import PostFormComment from "@/components/atoms/PostFormComment.vue";
+import PostContent from "@/components/atoms/Post/PostContent.vue";
+import PostListComment from "@/components/atoms/Post/PostListComment.vue";
+import PostFormComment from "@/components/atoms/Post/PostFormComment.vue";
 
 import IconLike from "vue-material-design-icons/ThumbUp.vue";
 import IconComment from "vue-material-design-icons/Comment.vue";
