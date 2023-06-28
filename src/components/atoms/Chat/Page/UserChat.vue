@@ -29,7 +29,7 @@ export default {
     },
     avatar: {
       type: String,
-      default: 'https://source.unsplash.com/_7LbC5J-jw4/600x600'
+      default: 'https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/09/28/14750947841563.png'
     },
     message: {
       type: String,

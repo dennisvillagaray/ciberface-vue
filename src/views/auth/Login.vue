@@ -25,6 +25,7 @@
 <script>
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
+import { mapActions } from "vuex";
 
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -41,29 +42,7 @@ export default {
     Logo
   },
 
-  setup() {
-    const username = ref("");
-    const password = ref("");
-    const router = useRouter();
 
-    const handleLogin = async () => {
-      try {
-
-        localStorage.setItem("user", JSON.stringify({ status: 200 }));
-        router.push({ name: "Home" });
-        window.href
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    return {
-      username,
-      password,
-      handleLogin,
-      v$: useVuelidate()
-    };
-  },
   data: () => {
     return {
       user: {
@@ -81,11 +60,32 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['modifyLogged']),
     async validateBlur(data) {
       await this.v$.user[data].$touch;
       const blur = this.v$.user[data].$error;
     },
+    handleLogin() {
+      try {
+        localStorage.setItem("user", JSON.stringify({ status: 200 }));
+        this.modifyLogged(true)
+        this.$router.push({ name: "Home" });
+        window.href
+      } catch (error) {
+        console.error("errorr", error);
+      }
+    },
 
-  }
+  },
+  setup() {
+    const username = ref("");
+    const password = ref("");
+
+    return {
+      username,
+      password,
+      v$: useVuelidate()
+    };
+  },
 };
 </script>

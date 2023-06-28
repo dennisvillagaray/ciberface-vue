@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      avatarImage: "https://source.unsplash.com/_7LbC5J-jw4/600x600",
+      avatarImage: "https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/09/28/14750947841563.png",
       modelValue: "",
       isClearInput: false,
       userList: [
